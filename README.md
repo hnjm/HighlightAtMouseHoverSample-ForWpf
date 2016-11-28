@@ -2,12 +2,12 @@
 
 ### Description
 
-                In this WPF project, we show you how to highlight a feature when the user hovers the mouse pointer over it. This effect can be realized in Map Suite by using a timer and doing some spatial querying based on the location of the mouse pointer. This sample works with area-based features but the same could be accomplished with point- or line-based features simply by using different spatial queries.
+In this WPF project, we show you how to highlight a feature when the user hovers the mouse pointer over it. This effect can be realized in Map Suite by using a timer and doing some spatial querying based on the location of the mouse pointer. This sample works with area-based features but the same could be accomplished with point- or line-based features simply by using different spatial queries.
               
-
 ![Screenshot](https://github.com/ThinkGeo/HighlightAtMouseHoverSample-ForWpf/blob/master/ScreenShot.png)
 
 ### Requirements
+
 This sample makes use of the following NuGet Packages
 
 [MapSuite 10.0.0.0](http:mapsuite.nuget)
