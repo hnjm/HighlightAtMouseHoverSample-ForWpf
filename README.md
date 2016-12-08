@@ -1,4 +1,4 @@
-# HighlightAtMouseHoverSample-ForWpf
+# #  Highlight At Mouse Hover Sample  for Wpf
 
 ### Description
 
