@@ -15,8 +15,15 @@ This sample makes use of the following NuGet Packages
 [MapSuite 10.0.0](https://www.nuget.org/packages?q=ThinkGeo)
 
 ### About the Code
+```csharp
+LayerOverlay highlightOverlay = (LayerOverlay)wpfMap1.Overlays["HighlightOverlay"];
+ShapeFileFeatureLayer featureLayer = (ShapeFileFeatureLayer)((LayerOverlay)wpfMap1.Overlays["LayerFeatureOverlay"]).Layers["StatesLayer"];
+InMemoryFeatureLayer highlightLayer = (InMemoryFeatureLayer)highlightOverlay.Layers["HighlightLayer"];
 
-Working...
+featureLayer.Open();
+Collection<Feature> features = featureLayer.QueryTools.GetFeaturesContaining(point, ReturningColumnsType.NoColumns);
+featureLayer.Close();
+```
 
 ### Getting Help
 
@@ -31,7 +38,10 @@ Working...
 ### Key APIs
 This example makes use of the following APIs:
 
-Working...
+- [ThinkGeo.MapSuite.Wpf.LayerOverlay](http://wiki.thinkgeo.com/wiki/api/thinkgeo.mapsuite.wpf.layeroverlay)
+- [ThinkGeo.MapSuite.Layers.ShapeFileFeatureLayer](http://wiki.thinkgeo.com/wiki/api/thinkgeo.mapsuite.layers.shapefilefeaturelayer)
+- [ThinkGeo.MapSuite.Layers.InMemoryFeatureLayer](http://wiki.thinkgeo.com/wiki/api/thinkgeo.mapsuite.layers.inmemoryfeaturelayer)
+- [ThinkGeo.MapSuite.Shapes.Feature](http://wiki.thinkgeo.com/wiki/api/thinkgeo.mapsuite.shapes.feature)
 
 ### About Map Suite
 Map Suite is a set of powerful development components and services for the .Net Framework.
