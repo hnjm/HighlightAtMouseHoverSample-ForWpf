@@ -29,12 +29,14 @@ namespace HighlightAtMouseHover
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             //Sets the correct map unit and the extent of the map.
-            wpfMap1.MapUnit = GeographyUnit.DecimalDegree;
-            wpfMap1.CurrentExtent = new RectangleShape(-128,51,-65,19);
+            wpfMap1.MapUnit = GeographyUnit.Meter;
+            wpfMap1.ZoomLevelSet = ThinkGeoCloudMapsOverlay.GetZoomLevelSet();
+            wpfMap1.CurrentExtent = new RectangleShape(-14248894, 6621293, -7235766, 2154935);
             wpfMap1.Background = new SolidColorBrush(Color.FromRgb(148, 196, 243));
 
-            WorldMapKitWmsWpfOverlay worldMapKitWmsWpfOverlay = new WorldMapKitWmsWpfOverlay();
-            wpfMap1.Overlays.Add(worldMapKitWmsWpfOverlay);
+            // Add ThinkGeoCloudMapsOverlay as basemap
+            ThinkGeoCloudMapsOverlay baseOverlay = new ThinkGeoCloudMapsOverlay();
+            wpfMap1.Overlays.Add(baseOverlay);
 
             LayerOverlay layerOverlay = new LayerOverlay();
             ShapeFileFeatureLayer shapeFileLayer = new ShapeFileFeatureLayer(@"../../data/USStates.shp");
@@ -47,7 +49,7 @@ namespace HighlightAtMouseHover
 
             //Highlight layer
             InMemoryFeatureLayer highlightLayer = new InMemoryFeatureLayer();
-            highlightLayer.ZoomLevelSet.ZoomLevel01.DefaultAreaStyle = AreaStyles.CreateSimpleAreaStyle(GeoColor.FromArgb(120, GeoColor.StandardColors.LightGreen),
+            highlightLayer.ZoomLevelSet.ZoomLevel01.DefaultAreaStyle = AreaStyles.CreateSimpleAreaStyle(GeoColor.FromArgb(120, GeoColor.StandardColors.Red),
                                                                                                         GeoColor.StandardColors.LightGray);
             highlightLayer.ZoomLevelSet.ZoomLevel01.ApplyUntilZoomLevel = ApplyUntilZoomLevel.Level20;
 
@@ -82,10 +84,9 @@ namespace HighlightAtMouseHover
             ScreenPointF screenPointF = new ScreenPointF((float)point.X, (float)point.Y);
             PointShape pointShape = ExtentHelper.ToWorldCoordinate(wpfMap1.CurrentExtent, screenPointF, (float)wpfMap1.Width, (float)wpfMap1.Height);
 
-            textBox1.Text = "X: " + DecimalDegreesHelper.GetDegreesMinutesSecondsStringFromDecimalDegree(pointShape.X) + 
-                          "  Y: " + DecimalDegreesHelper.GetDegreesMinutesSecondsStringFromDecimalDegree(pointShape.Y);
+            textBox1.Text = $"X: {pointShape.X}  Y: {pointShape.Y}";
 
-           }
+        }
 
         void timer_Tick(object sender, System.EventArgs e)
         {
