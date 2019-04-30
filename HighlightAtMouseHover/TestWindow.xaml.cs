@@ -30,12 +30,16 @@ namespace HighlightAtMouseHover
         {
             //Sets the correct map unit and the extent of the map.
             wpfMap1.MapUnit = GeographyUnit.Meter;
-            wpfMap1.ZoomLevelSet = ThinkGeoCloudMapsOverlay.GetZoomLevelSet();
+            wpfMap1.ZoomLevelSet = new ThinkGeoCloudMapsZoomLevelSet();
             wpfMap1.CurrentExtent = new RectangleShape(-14248894, 6621293, -7235766, 2154935);
             wpfMap1.Background = new SolidColorBrush(Color.FromRgb(148, 196, 243));
 
-            // Add ThinkGeoCloudMapsOverlay as basemap
-            ThinkGeoCloudMapsOverlay baseOverlay = new ThinkGeoCloudMapsOverlay();
+            /*===========================================
+               Backgrounds for this sample are powered by ThinkGeo Cloud Maps and require
+               a Client ID and Secret. These were sent to you via email when you signed up
+               with ThinkGeo, or you can register now at https://cloud.thinkgeo.com.
+            ===========================================*/
+            ThinkGeoCloudRasterMapsOverlay baseOverlay = new ThinkGeoCloudRasterMapsOverlay();
             wpfMap1.Overlays.Add(baseOverlay);
 
             LayerOverlay layerOverlay = new LayerOverlay();
